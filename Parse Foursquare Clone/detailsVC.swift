@@ -131,8 +131,8 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
                     // populate each field array with this record's values
                     
                     self.nameText.text = "Name: \(String(describing:self.nameArray.last!))"
-                    self.typeText.text = "Name: \(String(describing:self.typeArray.last!))"
-                    self.atmosphereText.text = "Name: \(String(describing:self.atmosphereArray.last!))"
+                    self.typeText.text = "Type: \(String(describing:self.typeArray.last!))"
+                    self.atmosphereText.text = "Atmosphere: \(String(describing:self.atmosphereArray.last!))"
                     // self.placeName.text = "Name: \(self.nameArray.last)"
                 
             }
