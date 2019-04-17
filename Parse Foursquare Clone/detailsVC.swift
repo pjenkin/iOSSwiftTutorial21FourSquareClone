@@ -24,12 +24,16 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
     
     var manager = CLLocationManager()
     var chosenPlace = ""
+    var chosenLatitude = ""
+    var chosenLongitude = ""
     
     // arrays for holding all place details
     var nameArray = [String]()
     var typeArray = [String]()
     var atmosphereArray = [String]()
     var imageArray = [PFFileObject]()
+    var latitudeArray = [String]()
+    var longitudeArray = [String]()
     
     
     override func viewDidLoad() {
@@ -65,6 +69,22 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // when a new location selected
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if self.chosenLatitude != "" && self.chosenLongitude != ""
+        {
+            let location = CLLocationCoordinate2D(latitude: Double(self.chosenLatitude)!, longitude: Double(self.chosenLongitude)!)
+            
+            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)      // map area/zoom
+            
+            let region = MKCoordinateRegion(center: location, span: span)
+            self.mapView.setRegion(region, animated: true)
+            
+        }
+    }
+    
+    
     // NB relatively recent way of adding notations to map - else no subtitles - from StackOverflow somewhere
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -119,6 +139,8 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
                 self.typeArray.removeAll(keepingCapacity: false)
                 self.atmosphereArray.removeAll(keepingCapacity: false)
                 self.imageArray.removeAll(keepingCapacity: false)
+                self.latitudeArray.removeAll(keepingCapacity: false)
+                self.longitudeArray.removeAll(keepingCapacity: false)
                 
                 // loop through, calling them objects this time not places, for no particular reason
                 for object in objects!
@@ -128,11 +150,16 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
                     self.typeArray.append(object.object(forKey: "type") as! String)
                     self.atmosphereArray.append(object.object(forKey: "atmosphere") as! String)
                     self.imageArray.append(object.object(forKey: "image") as! PFFileObject)
+                    self.latitudeArray.append(object.object(forKey: "latitude") as! String)
+                    self.longitudeArray.append(object.object(forKey: "longitude") as! String)
                     // populate each field array with this record's values
                     
                     self.nameText.text = "Name: \(String(describing:self.nameArray.last!))"
                     self.typeText.text = "Type: \(String(describing:self.typeArray.last!))"
                     self.atmosphereText.text = "Atmosphere: \(String(describing:self.atmosphereArray.last!))"
+                    // NB 'describing' used with labels to avoid 'Optional' in the strings
+                    self.chosenLatitude = self.latitudeArray.last!
+                    self.chosenLongitude = self.longitudeArray.last!
                     self.imageArray.last?.getDataInBackground (block:
                         {(data, error) in
                             if error != nil
