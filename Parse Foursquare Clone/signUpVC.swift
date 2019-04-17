@@ -73,6 +73,30 @@ class signUpVC: UIViewController {
     }
 
     @IBAction func signInBtnClicked(_ sender: Any) {
+        
+        if usernameText.text != "" && passwordText.text != ""
+        {
+            PFUser.logInWithUsername(inBackground: usernameText.text!, password: passwordText.text!)
+                {(user, error)
+                    in
+                    if error != nil
+                    {
+                        let alert = UIAlertController(title:"Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                        
+                        let okButton = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                        
+                        alert.addAction(okButton)
+                        
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    else
+                    {
+                        print("\(user?.username) signed-in")       // log
+                        self.performSegue(withIdentifier: "toPlacesVC", sender: nil)
+                    }
+
+            }
+        }
     }
     
     @IBAction func signUpBtnClicked(_ sender: Any) {
@@ -97,15 +121,10 @@ class signUpVC: UIViewController {
                 }
                 else
                 {
-                    print("User record written")
+                    print("User record written")        // log
                 }
             })
         }
-        
-        
-
-        
-        
         
     }
 }
