@@ -11,6 +11,7 @@ import Parse
 
 class placesVC: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,10 +60,11 @@ class placesVC: UIViewController {
                 delegate.rememberLogin()
             }
             // pasted in after first alert code written
-            
-            
-            
         }
     }
+    
+    @IBAction func addBtnClicked(_ sender: Any) {
+    }
+    
     
 }

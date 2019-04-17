@@ -19,6 +19,10 @@
 		94488B5122671C8F007A613E /* Parse_Foursquare_CloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94488B5022671C8F007A613E /* Parse_Foursquare_CloneTests.swift */; };
 		94488B5C22671C8F007A613E /* Parse_Foursquare_CloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94488B5B22671C8F007A613E /* Parse_Foursquare_CloneUITests.swift */; };
 		94488B6A22673FB9007A613E /* placesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94488B6922673FB9007A613E /* placesVC.swift */; };
+		94488B6C22675468007A613E /* attributesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94488B6B22675468007A613E /* attributesVC.swift */; };
+		94488B6E22675545007A613E /* locationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94488B6D22675545007A613E /* locationVC.swift */; };
+		94488B7022675594007A613E /* detailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94488B6F22675594007A613E /* detailsVC.swift */; };
+		94488B7222675AAE007A613E /* tapme.png in Resources */ = {isa = PBXBuildFile; fileRef = 94488B7122675AAE007A613E /* tapme.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		94488B5B22671C8F007A613E /* Parse_Foursquare_CloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parse_Foursquare_CloneUITests.swift; sourceTree = "<group>"; };
 		94488B5D22671C8F007A613E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94488B6922673FB9007A613E /* placesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = placesVC.swift; sourceTree = "<group>"; };
+		94488B6B22675468007A613E /* attributesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = attributesVC.swift; sourceTree = "<group>"; };
+		94488B6D22675545007A613E /* locationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationVC.swift; sourceTree = "<group>"; };
+		94488B6F22675594007A613E /* detailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailsVC.swift; sourceTree = "<group>"; };
+		94488B7122675AAE007A613E /* tapme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tapme.png; sourceTree = "<group>"; };
 		C1508DC600C1973E587326F3 /* Pods-Parse Foursquare CloneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parse Foursquare CloneUITests.release.xcconfig"; path = "Target Support Files/Pods-Parse Foursquare CloneUITests/Pods-Parse Foursquare CloneUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D11F7AB0407FAF08132ABDD6 /* Pods-Parse Foursquare Clone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parse Foursquare Clone.release.xcconfig"; path = "Target Support Files/Pods-Parse Foursquare Clone/Pods-Parse Foursquare Clone.release.xcconfig"; sourceTree = "<group>"; };
 		D5E66FD6324D3E7BF2E94DFE /* Pods-Parse Foursquare CloneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parse Foursquare CloneTests.debug.xcconfig"; path = "Target Support Files/Pods-Parse Foursquare CloneTests/Pods-Parse Foursquare CloneTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,12 +151,16 @@
 			children = (
 				94488B3822671C8B007A613E /* AppDelegate.swift */,
 				94488B3A22671C8B007A613E /* signUpVC.swift */,
+				94488B6B22675468007A613E /* attributesVC.swift */,
+				94488B6D22675545007A613E /* locationVC.swift */,
+				94488B6F22675594007A613E /* detailsVC.swift */,
 				94488B3C22671C8B007A613E /* Main.storyboard */,
 				94488B6922673FB9007A613E /* placesVC.swift */,
 				94488B4222671C8E007A613E /* Assets.xcassets */,
 				94488B4422671C8E007A613E /* LaunchScreen.storyboard */,
 				94488B4722671C8E007A613E /* Info.plist */,
 				94488B3F22671C8B007A613E /* Parse_Foursquare_Clone.xcdatamodeld */,
+				94488B7122675AAE007A613E /* tapme.png */,
 			);
 			path = "Parse Foursquare Clone";
 			sourceTree = "<group>";
@@ -282,6 +294,7 @@
 				94488B4622671C8E007A613E /* LaunchScreen.storyboard in Resources */,
 				94488B4322671C8E007A613E /* Assets.xcassets in Resources */,
 				94488B3E22671C8B007A613E /* Main.storyboard in Resources */,
+				94488B7222675AAE007A613E /* tapme.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +397,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94488B3B22671C8B007A613E /* signUpVC.swift in Sources */,
+				94488B6E22675545007A613E /* locationVC.swift in Sources */,
 				94488B4122671C8B007A613E /* Parse_Foursquare_Clone.xcdatamodeld in Sources */,
+				94488B7022675594007A613E /* detailsVC.swift in Sources */,
+				94488B6C22675468007A613E /* attributesVC.swift in Sources */,
 				94488B6A22673FB9007A613E /* placesVC.swift in Sources */,
 				94488B3922671C8B007A613E /* AppDelegate.swift in Sources */,
 			);
