@@ -273,8 +273,15 @@
                         <viewLayoutGuide key="safeArea" id="CKD-CH-Nzv"/>
                     </view>
                     <navigationItem key="navigationItem" id="827-r5-NO2">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="hFJ-8E-iAx"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="hFJ-8E-iAx">
+                            <connections>
+                                <action selector="saveBtnClicked:" destination="qWq-CS-Zt2" id="CAu-RN-uP3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="gmo-ev-Bd1" id="Lwq-F1-hRd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bcw-Bt-aaf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

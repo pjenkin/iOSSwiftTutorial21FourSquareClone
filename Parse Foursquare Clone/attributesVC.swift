@@ -39,6 +39,7 @@ class attributesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     */
     
     @IBAction func nextBtnClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "fromAttributesToLocationVC", sender: nil)
     }
     
     @objc func selectImage()

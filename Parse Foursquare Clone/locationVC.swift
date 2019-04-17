@@ -7,13 +7,28 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class locationVC: UIViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let latitude : CLLocationDegrees = 50
+        let longitude : CLLocationDegrees = -4
+        
+        let location : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        let span : MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        
+        let region : MKCoordinateRegion = MKCoordinateRegion(center: location, span: span)
+        
+        mapView.setRegion(region, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,5 +46,7 @@ class locationVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func saveBtnClicked(_ sender: Any) {
+    }
+    
 }

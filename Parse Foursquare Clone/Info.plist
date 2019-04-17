@@ -31,6 +31,8 @@
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To obtain photo to share</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To find where you and the location are to</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
