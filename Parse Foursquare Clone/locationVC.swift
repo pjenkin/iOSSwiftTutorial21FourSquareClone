@@ -112,22 +112,21 @@ class locationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         }
         
         place.saveInBackground{(success, error) in
-         if error != nil
-         {
-                // 1. declare an alert dialogue, 2. declare an 'ok' button, 3. add button to dialogue, 4. show dialogue
-                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-            
-                let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
-            
-                alert.addAction(ok)
-            
-                self.present(alert, animated: true, completion: nil)
-        }
+            if error != nil
+            {
+                    // 1. declare an alert dialogue, 2. declare an 'ok' button, 3. add button to dialogue, 4. show dialogue
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                
+                    let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                
+                    alert.addAction(ok)
+                
+                    self.present(alert, animated: true, completion: nil)
+            }
             else        // if record written ok
             {
                 print("location has been written")      // log
-            }
-            
+            }            
         }
     }
     

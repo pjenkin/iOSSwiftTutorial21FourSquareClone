@@ -9,11 +9,19 @@
 import UIKit
 import Parse
 
-class placesVC: UIViewController {
+class placesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    // declare the usual array(s) for (looking up) sequences of data to show in a table, in this case places
+    var placeNameArray = [String]()
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        getDataFromServer()         // remember to call for data!
 
         // Do any additional setup after loading the view.
     }
@@ -33,6 +41,23 @@ class placesVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // mandatory 2 table view delegate functions
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        // cell.textLabel?.text = "checking setup"
+        cell.textLabel?.text = placeNameArray[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return 10       // 10 to check at first
+        
+        return placeNameArray.count         // as many rows as there are places
+    }
+    
+    
     @IBAction func logOutBtnClicked(_ sender: Any) {
         PFUser.logOutInBackground { (error) in
             if error != nil
@@ -67,5 +92,37 @@ class placesVC: UIViewController {
         self.performSegue(withIdentifier: "fromPlacesToAttributesVC", sender: nil)
     }
     
+    
+    // bespoke function for downloading data from a server (e.g. a db on Parse server)
+    func getDataFromServer()
+    {
+        let query = PFQuery(className: "Places")
+        query.findObjectsInBackground {(places, error) in       // places actually Parse objects
+                if error != nil
+                {
+                    // 1. declare an alert dialogue, 2. declare an 'ok' button, 3. add button to dialogue, 4. show dialogue
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                    
+                    alert.addAction(ok)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else        // if record written ok
+                {
+                    print("places have been queried from server")      // log
+                    
+                    self.placeNameArray.removeAll(keepingCapacity: false)
+                    
+                    for place in places!    // for each place...
+                    {
+                        self.placeNameArray.append(place.object(forKey: "name") as! String)
+                        // ... append entire place to array
+                    }
+                    self.tableView.reloadData()
+                }
+        }
+    }
     
 }
