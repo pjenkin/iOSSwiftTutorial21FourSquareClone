@@ -93,6 +93,7 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
     
     // NB relatively recent way of adding notations to map - else no subtitles - from StackOverflow somewhere
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // (aha! this 'viewFor annotation: MKAnnotation' function is discussed in 21-226)
         
         // if the annotation concerned is coming from a phone's location, don't annotate in this way (useful in directions-to/from situation)
         if annotation is MKUserLocation {
@@ -108,7 +109,7 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView?.canShowCallout = true
-            pinView?.pinTintColor = UIColor.red
+            pinView?.pinTintColor = UIColor.green
             
             
             let button = UIButton(type: .detailDisclosure)      // .detailDisclosure == UIButton.detailDisclosure
