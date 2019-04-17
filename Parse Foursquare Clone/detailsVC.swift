@@ -26,6 +26,8 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
     var chosenPlace = ""
     var chosenLatitude = ""
     var chosenLongitude = ""
+    var requestCLLocation = CLLocation()
+    
     
     // arrays for holding all place details
     var nameArray = [String]()
@@ -121,6 +123,38 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         }
         return pinView
     }
+    
+    // another handler, this one for navigation/directions to-fro an annotation in map
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        if self.chosenLatitude != "" && self.chosenLongitude != ""
+        {
+            self.requestCLLocation = CLLocation(latitude: Double(self.chosenLatitude)!, longitude: Double(self.chosenLongitude)!)
+
+            CLGeocoder().reverseGeocodeLocation(requestCLLocation, completionHandler:
+                {
+                    (placemarks, error) in
+                        if let placemark = placemarks
+                        {
+                            // just making really sure of placemark!
+                            if placemark.count > 0
+                            {
+                                let mkPlaceMark = MKPlacemark(placemark: placemark[0])
+                                
+                                let mapItem = MKMapItem(placemark: mkPlaceMark)
+                                // get this place's name, as a label for the reverse geocoding
+                                mapItem.name = self.nameArray.last
+                                
+                                let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+                                // could've been walking, transit, ....
+                                mapItem.openInMaps(launchOptions: launchOptions)
+                            }
+                        }
+            })
+        }
+    }
+    
+    
     
     func findPlaceFromServer()
     {
