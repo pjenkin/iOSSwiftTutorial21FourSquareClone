@@ -127,7 +127,7 @@
                                 <rect key="frame" x="16" y="455" width="343" height="212"/>
                             </mapView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eue-06-eEh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="202"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="246"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYb-Pg-07e">
                                 <rect key="frame" x="16" y="292" width="309" height="21"/>
@@ -286,6 +286,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="gmo-ev-Bd1" id="Lwq-F1-hRd"/>
+                        <segue destination="UHQ-mL-E38" kind="show" identifier="fromLocationToPlacesVC" id="fzK-VO-BNo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bcw-Bt-aaf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -350,4 +351,7 @@
     <resources>
         <image name="tapme.png" width="300" height="166"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="fzK-VO-BNo"/>
+    </inferredMetricsTieBreakers>
 </document>

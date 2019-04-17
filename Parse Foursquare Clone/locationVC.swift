@@ -126,6 +126,11 @@ class locationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
             else        // if record written ok
             {
                 print("location has been written")      // log
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newPlace"), object: nil)
+                // see placesVC for handling/observe'ing of this notification
+                
+                self.performSegue(withIdentifier: "fromLocationToPlacesVC", sender: nil)
             }            
         }
     }

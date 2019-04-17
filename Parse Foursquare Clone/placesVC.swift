@@ -26,6 +26,11 @@ class placesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(placesVC.getDataFromServer), name: NSNotification.Name(rawValue: "newPlace"), object: nil)
+        // notification observer, looking out for a newly saved record & segue from locationVC
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -94,7 +99,7 @@ class placesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     // bespoke function for downloading data from a server (e.g. a db on Parse server)
-    func getDataFromServer()
+    @objc func getDataFromServer()        // NB @objc
     {
         let query = PFQuery(className: "Places")
         query.findObjectsInBackground {(places, error) in       // places actually Parse objects
