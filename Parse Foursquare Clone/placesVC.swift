@@ -14,6 +14,8 @@ class placesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // declare the usual array(s) for (looking up) sequences of data to show in a table, in this case places
     var placeNameArray = [String]()
     
+    var tappedPlace = ""
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +28,27 @@ class placesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
     }
 
+    // ready to handle e.g. a segue
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(placesVC.getDataFromServer), name: NSNotification.Name(rawValue: "newPlace"), object: nil)
         // notification observer, looking out for a newly saved record & segue from locationVC
+    }
+    
+    // on selection, segue to details of place
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tappedPlace = placeNameArray[indexPath.row]        // whichever row is selected
+        self.performSegue(withIdentifier: "fromPlacesToDetailsVC", sender: nil)
+    }
+    
+    // prepare for segue by
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromPlacesToDetailsVC"
+        {
+            let destinationVC = segue.destination as! detailsVC
+            // tappedPlace from didSelectRowAt - when user selected a row in the placesVC
+            destinationVC.chosenPlace = self.tappedPlace + "!!!!"       // diagnostic
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {

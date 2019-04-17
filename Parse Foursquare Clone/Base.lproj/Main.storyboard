@@ -171,6 +171,7 @@
                     </view>
                     <connections>
                         <outlet property="atmosphereText" destination="Uuy-Yv-KBy" id="bj5-x3-0yF"/>
+                        <outlet property="mapView" destination="qsm-lc-rFM" id="Gh7-Xw-Xyx"/>
                         <outlet property="nameText" destination="nYb-Pg-07e" id="SGa-sU-9Sq"/>
                         <outlet property="placeImage" destination="eue-06-eEh" id="Cju-8g-OQW"/>
                         <outlet property="typeText" destination="yfz-2y-q3u" id="vdR-Cj-06O"/>
