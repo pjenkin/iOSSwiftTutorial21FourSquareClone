@@ -133,7 +133,25 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
                     self.nameText.text = "Name: \(String(describing:self.nameArray.last!))"
                     self.typeText.text = "Type: \(String(describing:self.typeArray.last!))"
                     self.atmosphereText.text = "Atmosphere: \(String(describing:self.atmosphereArray.last!))"
-                    // self.placeName.text = "Name: \(self.nameArray.last)"
+                    self.imageArray.last?.getDataInBackground (block:
+                        {(data, error) in
+                            if error != nil
+                            {
+                                // 1. declare an alert dialogue, 2. declare an 'ok' button, 3. add button to dialogue, 4. show dialogue
+                                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                                
+                                let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                                
+                                alert.addAction(ok)
+                                
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                            else        // if query went ok, loop through
+                            {
+                                // having gotten data in background, async from server, use this in image of place
+                                self.placeImage.image = UIImage(data: data!)
+                            }
+                    })
                 
             }
         }
