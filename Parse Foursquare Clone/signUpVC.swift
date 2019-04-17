@@ -9,8 +9,10 @@
 import UIKit
 import Parse
 
-class ViewController: UIViewController {
+class signUpVC: UIViewController {
 
+    @IBOutlet weak var usernameText: UITextField!
+    @IBOutlet weak var passwordText: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -48,7 +50,8 @@ class ViewController: UIViewController {
             }
         }
 */
-        // test query
+/*
+        // check query
         let query = PFQuery(className: "SouthparkCharacters")
         query.findObjectsInBackground {(character, error) in    // default usage: (objects, error)
             if error != nil
@@ -60,6 +63,8 @@ class ViewController: UIViewController {
                 print(character)
             }
         }
+ */
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,6 +72,41 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func signInBtnClicked(_ sender: Any) {
+    }
+    
+    @IBAction func signUpBtnClicked(_ sender: Any) {
+        
+        // validate login details given
+        if usernameText.text != "" && passwordText.text != ""
+        {
+            let user = PFUser()
+            user.username = usernameText.text
+            user.password = passwordText.text    // username and password mandatory - other fields could be user["somefield"] = x
+            
+            user.signUpInBackground(block: {(success, error) in
+                if error != nil
+                {
+                    let alert = UIAlertController(title:"Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    let okButton = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                    
+                    alert.addAction(okButton)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else
+                {
+                    print("User record written")
+                }
+            })
+        }
+        
+        
 
+        
+        
+        
+    }
 }
 

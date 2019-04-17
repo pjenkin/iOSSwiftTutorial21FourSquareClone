@@ -11,7 +11,7 @@
 		629348427146443714289D0C /* Pods_Parse_Foursquare_CloneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79B93BAF9BCB3DA7E6837DE8 /* Pods_Parse_Foursquare_CloneTests.framework */; };
 		8BD3A5BEDBE44A4CF939C26F /* Pods_Parse_Foursquare_CloneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5098F0DD08E100157F8AC982 /* Pods_Parse_Foursquare_CloneUITests.framework */; };
 		94488B3922671C8B007A613E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94488B3822671C8B007A613E /* AppDelegate.swift */; };
-		94488B3B22671C8B007A613E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94488B3A22671C8B007A613E /* ViewController.swift */; };
+		94488B3B22671C8B007A613E /* signUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94488B3A22671C8B007A613E /* signUpVC.swift */; };
 		94488B3E22671C8B007A613E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94488B3C22671C8B007A613E /* Main.storyboard */; };
 		94488B4122671C8B007A613E /* Parse_Foursquare_Clone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94488B3F22671C8B007A613E /* Parse_Foursquare_Clone.xcdatamodeld */; };
 		94488B4322671C8E007A613E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94488B4222671C8E007A613E /* Assets.xcassets */; };
@@ -45,7 +45,7 @@
 		92A63C9C9C7B85643ECEBD76 /* Pods-Parse Foursquare Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parse Foursquare Clone.debug.xcconfig"; path = "Target Support Files/Pods-Parse Foursquare Clone/Pods-Parse Foursquare Clone.debug.xcconfig"; sourceTree = "<group>"; };
 		94488B3522671C8B007A613E /* Parse Foursquare Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parse Foursquare Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94488B3822671C8B007A613E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		94488B3A22671C8B007A613E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		94488B3A22671C8B007A613E /* signUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpVC.swift; sourceTree = "<group>"; };
 		94488B3D22671C8B007A613E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94488B4022671C8B007A613E /* Parse_Foursquare_Clone.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Parse_Foursquare_Clone.xcdatamodel; sourceTree = "<group>"; };
 		94488B4222671C8E007A613E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,7 +111,6 @@
 				D612D9276975F46ACADD2F0D /* Pods-Parse Foursquare CloneUITests.debug.xcconfig */,
 				C1508DC600C1973E587326F3 /* Pods-Parse Foursquare CloneUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -141,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				94488B3822671C8B007A613E /* AppDelegate.swift */,
-				94488B3A22671C8B007A613E /* ViewController.swift */,
+				94488B3A22671C8B007A613E /* signUpVC.swift */,
 				94488B3C22671C8B007A613E /* Main.storyboard */,
 				94488B4222671C8E007A613E /* Assets.xcassets */,
 				94488B4422671C8E007A613E /* LaunchScreen.storyboard */,
@@ -305,15 +304,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Parse Foursquare Clone-checkManifestLockResult.txt",
 			);
@@ -327,16 +322,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Parse Foursquare Clone/Pods-Parse Foursquare Clone-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
@@ -351,15 +342,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Parse Foursquare CloneTests-checkManifestLockResult.txt",
 			);
@@ -373,15 +360,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Parse Foursquare CloneUITests-checkManifestLockResult.txt",
 			);
@@ -397,7 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94488B3B22671C8B007A613E /* ViewController.swift in Sources */,
+				94488B3B22671C8B007A613E /* signUpVC.swift in Sources */,
 				94488B4122671C8B007A613E /* Parse_Foursquare_Clone.xcdatamodeld in Sources */,
 				94488B3922671C8B007A613E /* AppDelegate.swift in Sources */,
 			);
