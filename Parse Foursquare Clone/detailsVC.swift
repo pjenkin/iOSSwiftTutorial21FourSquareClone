@@ -81,6 +81,12 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
             let region = MKCoordinateRegion(center: location, span: span)
             self.mapView.setRegion(region, animated: true)
             
+            let annotation = MKPointAnnotation()        // should hopefully fire off mapview handler for annotations (see below) when used
+            annotation.coordinate = location
+            annotation.title = self.nameArray.last!
+            annotation.subtitle = self.typeArray.last!
+            self.mapView.addAnnotation(annotation)      // will hopefully fire off handler (see below)
+            
         }
     }
     
