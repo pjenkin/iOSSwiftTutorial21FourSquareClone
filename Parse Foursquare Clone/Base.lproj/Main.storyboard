@@ -91,7 +91,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Byx-7s-CI9"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cg5-dx-7FB"/>
+                    <navigationItem key="navigationItem" id="cg5-dx-7FB">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="prG-tg-PMo">
+                            <connections>
+                                <action selector="logOutBtnClicked:" destination="UHQ-mL-E38" id="JWG-l6-hBb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYR-yk-C3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
