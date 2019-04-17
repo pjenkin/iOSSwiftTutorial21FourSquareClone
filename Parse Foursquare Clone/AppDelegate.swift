@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ParseMutableClientConfiguration.clientKey = "571c1e762705f9975f4aafd4f91cb373d6e23d9f"
             ParseMutableClientConfiguration.server = "http://34.251.9.205:80/parse"
         }
+        // in apps/parse/htdocs/server.js - applicationId: appId ; clientKey:  masterKey;  server:  serverURL
         
         Parse.initialize(with: myConfig)
         
