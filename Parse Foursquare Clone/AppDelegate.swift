@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let myConfig = ParseClientConfiguration { (ParseMutableClientConfiguration) in
+            ParseMutableClientConfiguration.applicationId = "4db3417ac4d79c34640760d3c13c3728cd26604a"
+            ParseMutableClientConfiguration.clientKey = "571c1e762705f9975f4aafd4f91cb373d6e23d9f"
+            ParseMutableClientConfiguration.server = "http://34.251.9.205:80/parse"
+        }
+        
+        Parse.initialize(with: myConfig)
+        
+        let defaultACL = PFACL()
+        defaultACL.hasPublicReadAccess = true
+        defaultACL.hasPublicWriteAccess = true
+        
+        PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
+        // giving permission to edit objects
+        
         return true
     }
 
