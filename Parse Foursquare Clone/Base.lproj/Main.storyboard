@@ -13,7 +13,7 @@
         <!--Sign UpVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="signUpVC" customModule="Parse_Foursquare_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signUpVC" id="BYZ-38-t0r" customClass="signUpVC" customModule="Parse_Foursquare_Clone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
         <!--Navigation Controller-->
         <scene sceneID="o8Z-rN-DMu">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="edg-e4-tAT" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationVC" automaticallyAdjustsScrollViewInsets="NO" id="edg-e4-tAT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BJW-jp-oGe">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

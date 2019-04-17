@@ -91,8 +91,15 @@ class signUpVC: UIViewController {
                     }
                     else
                     {
+                        UserDefaults.standard.set(self.usernameText.text!, forKey: "userLoggedIn")
+                        UserDefaults.standard.synchronize()
+                        
                         print("\(user?.username) signed-in")       // log
-                        self.performSegue(withIdentifier: "toPlacesVC", sender: nil)
+                        // self.performSegue(withIdentifier: "toPlacesVC", sender: nil)
+                        // cf rememberLogin in AppDelegate - check if user already logged-in
+                        let delegate :AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                        
+                        delegate.rememberLogin()
                     }
 
             }
@@ -121,7 +128,15 @@ class signUpVC: UIViewController {
                 }
                 else
                 {
+                    UserDefaults.standard.set(self.usernameText.text!, forKey: "userLoggedIn")
+                    UserDefaults.standard.synchronize()
+                    
                     print("User record written")        // log
+                    // self.performSegue(withIdentifier: "toPlacesVC", sender: nil)
+                    // cf rememberLogin in AppDelegate - check if user already logged-in
+                    let delegate :AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                    
+                    delegate.rememberLogin()
                 }
             })
         }

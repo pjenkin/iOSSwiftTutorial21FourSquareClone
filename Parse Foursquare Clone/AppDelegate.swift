@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
         // giving permission to edit objects
         
+        rememberLogin()             // check DefaultUser state for already logged-in user
+        
         return true
     }
 
@@ -107,5 +109,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func rememberLogin()
+    {
+        let user : String? = UserDefaults.standard.string(forKey: "userLoggedIn")
+        
+        
+        if user != nil
+        {
+        
+            // set & use Storyboard ID for entry point View Controller(s) in order to redefine entry points
+         
+            let board : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let navigationController = board.instantiateViewController(withIdentifier: "navigationVC") as! UINavigationController
+            
+            window?.rootViewController = navigationController       // thence to placesVC
+            
+        }
+    }
+    
+    
 }
 
