@@ -64,6 +64,7 @@ class placesVC: UIViewController {
     }
     
     @IBAction func addBtnClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "fromPlacesToAttributesVC", sender: nil)
     }
     
     

@@ -10,6 +10,10 @@ import UIKit
 
 class detailsVC: UIViewController {
 
+    @IBOutlet weak var nameText: UILabel!
+    @IBOutlet weak var typeText: UILabel!
+    @IBOutlet weak var atmosphereText: UILabel!
+    @IBOutlet weak var placeImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 

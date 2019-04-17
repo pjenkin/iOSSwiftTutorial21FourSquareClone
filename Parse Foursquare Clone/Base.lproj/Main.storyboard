@@ -169,6 +169,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uaB-cR-1RL"/>
                     </view>
+                    <connections>
+                        <outlet property="atmosphereText" destination="Uuy-Yv-KBy" id="bj5-x3-0yF"/>
+                        <outlet property="nameText" destination="nYb-Pg-07e" id="SGa-sU-9Sq"/>
+                        <outlet property="placeImage" destination="eue-06-eEh" id="Cju-8g-OQW"/>
+                        <outlet property="typeText" destination="yfz-2y-q3u" id="vdR-Cj-06O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEi-OF-cEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -227,9 +233,17 @@
                         <viewLayoutGuide key="safeArea" id="I59-mz-bW6"/>
                     </view>
                     <navigationItem key="navigationItem" id="1Ek-Ya-Rm4">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="Kea-rz-pVY"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Kea-rz-pVY">
+                            <connections>
+                                <action selector="nextBtnClicked:" destination="x9h-og-qyr" id="3oU-os-3AH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="atmosphereText" destination="Ptr-r8-1EQ" id="qsS-Op-4Mf"/>
+                        <outlet property="nameText" destination="eDP-YF-chc" id="eJT-pE-6R5"/>
+                        <outlet property="placeImage" destination="VVa-1a-ooA" id="yYI-9N-DaG"/>
+                        <outlet property="typeText" destination="PWw-na-d6M" id="z3e-cJ-dGb"/>
                         <segue destination="q3a-2l-iqN" kind="show" identifier="fromAttributesToLocationVC" id="mvd-jL-bKa"/>
                     </connections>
                 </viewController>
