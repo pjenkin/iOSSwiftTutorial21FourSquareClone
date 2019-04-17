@@ -8,6 +8,12 @@
 
 import UIKit
 
+// global variables - accessible from any view controller (alternative to relying on prepareForSegue for passing data between several view controllers e.g. in annotations within location view)
+var globalName = ""
+var globalType = ""
+var globalAtmosphere = ""
+var globalImage = UIImage()
+
 class attributesVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var nameText: UITextField!
@@ -38,8 +44,34 @@ class attributesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     }
     */
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        globalName = ""
+        globalType = ""
+        globalAtmosphere = ""
+        globalImage = UIImage()
+    }
+    
     @IBAction func nextBtnClicked(_ sender: Any) {
+        
+        if nameText.text != "" && typeText.text != "" && atmosphereText.text != ""
+        {
+            if let selectedImage = placeImage.image     // ... and if an image has lately been picked
+            {
+                globalName = nameText.text!
+                globalType = typeText.text!
+                globalAtmosphere = atmosphereText.text!
+                globalImage = selectedImage
+            }
+        }
+        
         self.performSegue(withIdentifier: "fromAttributesToLocationVC", sender: nil)
+        
+        // clear all of the
+        nameText.text = ""
+        typeText.text = ""
+        atmosphereText.text = ""
+        self.placeImage.image = UIImage(named: "tapme.png")
     }
     
     @objc func selectImage()

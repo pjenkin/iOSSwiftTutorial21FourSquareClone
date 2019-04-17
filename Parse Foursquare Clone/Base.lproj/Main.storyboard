@@ -273,6 +273,11 @@
                         <viewLayoutGuide key="safeArea" id="CKD-CH-Nzv"/>
                     </view>
                     <navigationItem key="navigationItem" id="827-r5-NO2">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="zuk-ot-LhL">
+                            <connections>
+                                <action selector="backBtnClicked:" destination="qWq-CS-Zt2" id="Ixc-6i-ETM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="hFJ-8E-iAx">
                             <connections>
                                 <action selector="saveBtnClicked:" destination="qWq-CS-Zt2" id="CAu-RN-uP3"/>

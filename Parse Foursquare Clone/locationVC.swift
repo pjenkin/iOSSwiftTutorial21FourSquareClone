@@ -56,8 +56,8 @@ class locationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
             
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinates     // use user touches on map
-            annotation.title = "annotation title here"
-            annotation.subtitle = "type of the place"
+            annotation.title = globalName           // use global vars from other view controller
+            annotation.subtitle = globalType
             
             self.mapView.addAnnotation(annotation)
         }
@@ -79,6 +79,10 @@ class locationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func backBtnClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        // in case user d'change their mind, don't go here after all (ie go back)
+    }
     @IBAction func saveBtnClicked(_ sender: Any) {
     }
     
