@@ -25,6 +25,13 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
     var manager = CLLocationManager()
     var chosenPlace = ""
     
+    // arrays for holding all place details
+    var nameArray = [String]()
+    var typeArray = [String]()
+    var atmosphereArray = [String]()
+    var imageArray = [PFFileObject]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -37,6 +44,9 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         manager.startUpdatingLocation()                     // immediately start locating
         
         print(chosenPlace)
+        
+        // get details of selected place, from server db
+        findPlaceFromServer()
 
     }
 
@@ -83,6 +93,53 @@ class detailsVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
             pinView?.annotation = annotation
         }
         return pinView
+    }
+    
+    func findPlaceFromServer()
+    {
+        let query = PFQuery(className: "Places")
+        query.whereKey("name", equalTo: self.chosenPlace)
+        print("ChosenPlace\(self.chosenPlace)")
+        query.findObjectsInBackground{(objects, error) in
+            if error != nil
+            {
+                // 1. declare an alert dialogue, 2. declare an 'ok' button, 3. add button to dialogue, 4. show dialogue
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                
+                let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+                
+                alert.addAction(ok)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+            else        // if query went ok, loop through
+            {
+                // first, clear out
+                self.nameArray.removeAll(keepingCapacity: false)
+                self.typeArray.removeAll(keepingCapacity: false)
+                self.atmosphereArray.removeAll(keepingCapacity: false)
+                self.imageArray.removeAll(keepingCapacity: false)
+                
+                // loop through, calling them objects this time not places, for no particular reason
+                for object in objects!
+                {
+                    print("")
+                    self.nameArray.append(object.object(forKey: "name") as! String)
+                    self.typeArray.append(object.object(forKey: "type") as! String)
+                    self.atmosphereArray.append(object.object(forKey: "atmosphere") as! String)
+                    self.imageArray.append(object.object(forKey: "image") as! PFFileObject)
+                    // populate each field array with this record's values
+                    
+                    self.nameText.text = "Name: \(String(describing:self.nameArray.last!))"
+                    self.typeText.text = "Name: \(String(describing:self.typeArray.last!))"
+                    self.atmosphereText.text = "Name: \(String(describing:self.atmosphereArray.last!))"
+                    // self.placeName.text = "Name: \(self.nameArray.last)"
+                
+            }
+        }
+
+            
+        }
     }
 
 }

@@ -46,7 +46,7 @@ class placesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         {
             let destinationVC = segue.destination as! detailsVC
             // tappedPlace from didSelectRowAt - when user selected a row in the placesVC
-            destinationVC.chosenPlace = self.tappedPlace + "!!!!"       // diagnostic
+            destinationVC.chosenPlace = self.tappedPlace       // used in detailsVC - also diagnostic
             
         }
     }
