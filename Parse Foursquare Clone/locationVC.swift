@@ -9,12 +9,16 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Parse
 
 class locationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
 
     var manager = CLLocationManager()
+    
+    var chosenLatitude = ""
+    var chosenLongitude = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +60,13 @@ class locationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
             
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinates     // use user touches on map
-            annotation.title = globalName           // use global vars from other view controller
+            annotation.title = globalName           // use global vars from other view controller (e.g. attributesVC)
             annotation.subtitle = globalType
             
-            self.mapView.addAnnotation(annotation)
+            self.mapView.addAnnotation(annotation)  // should fire off mapView handler for annotations (see below)
+            
+            self.chosenLatitude = String(coordinates.latitude)
+            self.chosenLongitude = String(coordinates.longitude)  // for using coords outside mehod scope
         }
         
     }
@@ -69,7 +76,12 @@ class locationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        // clear-up, to be ready
+        self.chosenLatitude = ""
+        self.chosenLongitude = ""
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -83,7 +95,40 @@ class locationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate
         self.dismiss(animated: true, completion: nil)
         // in case user d'change their mind, don't go here after all (ie go back)
     }
+    
+    // save place's location & attributes
     @IBAction func saveBtnClicked(_ sender: Any) {
+        
+        let place = PFObject(className: "Places")
+        place["name"] = globalName
+        place["type"] = globalType
+        place["atmosphere"] = globalAtmosphere
+        place["latitude"] = self.chosenLatitude
+        place["longitude"] = self.chosenLongitude
+        
+        if let imageData = UIImageJPEGRepresentation(globalImage, 0.5)     // 0.5 compression for stored image file in Parse's db
+        {
+            place["image"] = PFFileObject(name: "image.jpg", data: imageData)
+        }
+        
+        place.saveInBackground{(success, error) in
+         if error != nil
+         {
+                // 1. declare an alert dialogue, 2. declare an 'ok' button, 3. add button to dialogue, 4. show dialogue
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+            
+                let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            
+                alert.addAction(ok)
+            
+                self.present(alert, animated: true, completion: nil)
+        }
+            else        // if record written ok
+            {
+                print("location has been written")      // log
+            }
+            
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

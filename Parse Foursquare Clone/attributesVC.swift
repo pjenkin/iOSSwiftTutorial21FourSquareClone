@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 // global variables - accessible from any view controller (alternative to relying on prepareForSegue for passing data between several view controllers e.g. in annotations within location view)
 var globalName = ""
@@ -46,6 +47,8 @@ class attributesVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // clear-up, to be ready
         globalName = ""
         globalType = ""
         globalAtmosphere = ""
